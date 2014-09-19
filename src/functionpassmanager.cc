@@ -1,7 +1,7 @@
 #include "node-llvm.h"
 #include "llvm/Analysis/Verifier.h"
 #include "llvm/Analysis/Passes.h"
-#include "llvm/DataLayout.h"
+#include "llvm/IR/DataLayout.h"
 #include "llvm/Transforms/Scalar.h"
 
 static Handle<Value> FPMConstructor(const Arguments& args){
