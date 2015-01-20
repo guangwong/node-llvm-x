@@ -1,6 +1,6 @@
 {
   'variables': {
-    "llvm_config": "llvm-config",
+    'llvm_config': 'llvm-config',
   },
   'targets': [  
     {
@@ -22,7 +22,7 @@
       'cflags': [
         '-O3',
         '-Wall',
-        '-Werror',
+        '-Werror'
       ],
       'cflags_cc': [
         '-O3',
@@ -32,16 +32,25 @@
         '-g',
       ],      
       'defines': [
-        "__STDC_LIMIT_MACROS=1",
-        "__STDC_CONSTANT_MACROS=1"
+        '__STDC_LIMIT_MACROS=1',
+        '__STDC_CONSTANT_MACROS=1'
       ],
       'include_dirs+': [
-        "src/",
-        "<!@(<(llvm_config) --includedir)"
+        'src/',
+        '<!@(<(llvm_config) --includedir)'
       ],
-      "libraries": [
-        "<!@(<(llvm_config) --ldflags)",
-        "<!@(<(llvm_config) --libs core jit native)"
+      'libraries': [
+        '<!@(<(llvm_config) --ldflags)',
+        '<!@(<(llvm_config) --libs core jit native)'
+      ],
+      'conditions': [
+        [ 'OS=="mac"', {
+          'xcode_settings': {
+            'OTHER_CPLUSPLUSFLAGS' : ['-std=c++11','-stdlib=libc++'],
+            'OTHER_LDFLAGS': ['-stdlib=libc++'],
+            'MACOSX_DEPLOYMENT_TARGET': '10.7'
+            },
+        }]
       ]
     }
   ]
